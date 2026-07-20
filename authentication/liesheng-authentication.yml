@@ -1,0 +1,61 @@
+generated: '2026-07-19'
+method: searched
+source: https://apizone.suunto.com/how-to-start
+docs: https://apizone.suunto.com/how-to-start
+notes: >-
+  Liesheng Group publishes no API of its own. Its owned brand SUUNTO operates the
+  Suunto Cloud API (Integration API) behind the Suunto API Zone, an Azure API
+  Management developer portal. Access requires acceptance into the Suunto partner
+  program. Every Cloud API call carries TWO credentials: an OAuth2 bearer JWT and
+  an APIM subscription key.
+summary:
+  types:
+  - oauth2
+  - apiKey
+  - http
+  api_key_in:
+  - header
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: SuuntoOAuth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://cloudapi-oauth.suunto.com/oauth/authorize
+    tokenUrl: https://cloudapi-oauth.suunto.com/oauth/token
+    scopes:
+    - workout
+  token_format: JWT
+  token_lifetime_seconds: 86400
+  refresh_token: true
+  token_endpoint_auth: >-
+    HTTP Basic — Authorization: Basic Base64(client_id:client_secret)
+  request_header: 'Authorization: Bearer <jwt token>'
+  user_claim: >-
+    The JWT carries a custom claim `user` holding the authorizing Suunto App
+    account username; used to correlate webhook notifications to a stored token.
+  source: https://apizone.suunto.com/how-to-start
+- name: ApimSubscriptionKey
+  type: apiKey
+  in: header
+  name: Ocp-Apim-Subscription-Key
+  required_for: https://cloudapi.suunto.com/ (not required for OAuth endpoints)
+  keys: primary and secondary, rotatable from the API Zone profile page
+  source: https://apizone.suunto.com/how-to-start
+- name: ClientCredentialsBasic
+  type: http
+  scheme: basic
+  applies_to: https://cloudapi-oauth.suunto.com/oauth/token
+  source: https://apizone.suunto.com/faq
+onboarding:
+  gated: true
+  process:
+  - Apply to the Suunto partner program at https://www.suunto.com/welcomepartners
+  - Sign the API agreement and name the developers who need API Zone access
+  - Subscribe to the Developer API in the API Zone to obtain subscription keys
+  - Configure app name, client secret and redirect URI in the API Zone profile
+  response_time: within two weeks of partner-program acceptance
+  contact: partners@suunto.com
+  personal_use: not offered — companies and organizations only
+  cost: no charge for API use
