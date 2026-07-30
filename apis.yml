@@ -1,20 +1,144 @@
 aid: liesheng
-name: liesheng
-description: liesheng is a company surfaced as a portfolio company of qiming and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+name: Liesheng Group
+description: >-
+  Liesheng Group (猎声集团 / Liesheng Technology) is a Dongguan, Guangdong based
+  consumer-electronics company founded on 25 May 2015 as one of Xiaomi's first
+  ecosystem-chain suppliers. It operates as a global ODM/OEM solution provider —
+  it engineered the Redmi AirDots true-wireless earbuds — while building its own
+  brand portfolio, and reaches customers in more than 100 countries and regions.
+  Liesheng launched the HAYLOU brand of wireless audio, smart wearables, bone-
+  conduction headphones and microphones in 2017, and in 2022 acquired SUUNTO, the
+  85-year-old Finnish premium sports-watch and outdoor-instrument brand, in the
+  same year it raised a B round led by Cathay Capital and a B+ round led by Amer
+  Sports. Liesheng publishes no corporate API of its own; its developer surface
+  is the Suunto Cloud API (Integration API), a partner-gated OAuth2 workout and
+  daily-activity data API served through the Suunto API Zone.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://liesheng.cc/phone/images/logo.png
 url: https://raw.githubusercontent.com/api-evangelist/liesheng/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - qiming
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-brands:
+- SUUNTO
+- HAYLOU
+x-tier: profiled
+x-tier-reason: brand-api-surface
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Consumer Electronics
+- Wearables
+- Audio
+- Sports
+- Fitness
+- Health
+- Internet of Things
+- ODM
+- OEM
+- China
+apis:
+- aid: liesheng:suunto-cloud-api
+  name: Suunto Cloud API
+  description: >-
+    The Suunto Cloud API (also called the Integration API) gives approved partners
+    OAuth2-authorized access to a Suunto App user's workout and daily-activity
+    data. Workouts are delivered as FIT files carrying summary data (duration,
+    average heart rate, distance) plus measured samples (heart rate, R-R data,
+    power, altitude, temperature) and GPS tracks; daily activity covers steps and
+    calories. Partners can also push workouts as FIT files and routes as GPX files
+    back into a user's account for sync to Suunto watches. Webhook notifications
+    announce newly synced workouts so partners fetch on demand rather than poll.
+    Sleep data, points of interest and personal data such as weight or heart-rate
+    zones are not yet exposed. Access is gated behind the Suunto partner program
+    and is free of charge, but is not offered for personal use.
+  humanURL: https://apizone.suunto.com/apis
+  baseURL: https://cloudapi.suunto.com
+  tags:
+  - Workouts
+  - Activity
+  - Fitness
+  - Wearables
+  - FIT
+  - GPX
+  properties:
+  - type: DeveloperPortal
+    url: https://apizone.suunto.com/
+  - type: Documentation
+    url: https://apizone.suunto.com/how-to-start
+  - type: APIReference
+    url: https://apizone.suunto.com/apis
+  - type: GettingStarted
+    url: https://apizone.suunto.com/how-to-start
+  - type: Support
+    url: https://apizone.suunto.com/faq
+  - type: SignUp
+    url: https://www.suunto.com/welcomepartners
+  - type: Login
+    url: https://apizone.suunto.com/signin
+  - type: Authentication
+    url: authentication/liesheng-authentication.yml
+  - type: OAuthScopes
+    url: scopes/liesheng-scopes.yml
+  - type: Webhooks
+    url: asyncapi/liesheng-suunto-webhooks.yml
+  - type: Conventions
+    url: conventions/liesheng-conventions.yml
+  - type: Sandbox
+    url: sandbox/liesheng-sandbox.yml
+  - type: Lifecycle
+    url: lifecycle/liesheng-lifecycle.yml
+- aid: liesheng:haylou-ucp
+  name: HAYLOU Commerce (UCP/MCP)
+  description: >-
+    The HAYLOU brand storefront exposes an agent-facing commerce surface over the
+    Universal Commerce Protocol, reachable as a live MCP endpoint. Agents can
+    search the catalog, build a cart, create and update a checkout, and complete
+    a purchase, alongside fulfillment, discount and order capabilities. Checkout
+    requires explicit contemporaneous buyer approval before any payment is
+    completed, and the endpoint is rate-limited per IP. The store also serves an
+    llms.txt and agents.md describing read-only browsing routes for agents that
+    only need product and collection data. This surface is provisioned by
+    Shopify, which serves UCP natively for its stores, rather than being built by
+    Liesheng — but it is genuinely served from the haylou.com origin and is the
+    only MCP server in the Liesheng estate.
+  humanURL: https://haylou.com/agents.md
+  baseURL: https://haylou.com/api/ucp/mcp
+  tags:
+  - Commerce
+  - Agentic Commerce
+  - MCP
+  - UCP
+  - Retail
+  properties:
+  - type: MCPServer
+    url: mcp/liesheng-mcp.yml
+  - type: LLMsTxt
+    url: llms/liesheng-haylou-llms.txt
+  - type: Documentation
+    url: https://haylou.com/llms.txt
+  - type: WellKnown
+    url: well-known/liesheng-haylou-ucp.json
+  - type: Authentication
+    url: well-known/liesheng-haylou-openid-configuration.json
+  - type: TermsOfService
+    url: https://haylou.com/policies/terms-of-service
+  - type: PrivacyPolicy
+    url: https://haylou.com/policies/privacy-policy
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,3 +147,58 @@ maintainers:
 common:
 - type: Website
   url: https://liesheng.cc
+- type: About
+  url: https://liesheng.cc/about.html
+- type: ProductCatalog
+  url: https://liesheng.cc/product.html
+- type: Support
+  url: https://liesheng.cc/support.html
+- type: Community
+  url: https://liesheng.cc/forum.html
+- type: TermsOfService
+  url: https://liesheng.cc/terms.html
+- type: PrivacyPolicy
+  url: https://liesheng.cc/privacy.html
+- type: DeveloperPortal
+  url: https://apizone.suunto.com/
+- type: Documentation
+  url: https://apizone.suunto.com/how-to-start
+- type: APIReference
+  url: https://apizone.suunto.com/apis
+- type: GettingStarted
+  url: https://apizone.suunto.com/how-to-start
+- type: SignUp
+  url: https://www.suunto.com/welcomepartners
+- type: Authentication
+  url: authentication/liesheng-authentication.yml
+- type: OAuthScopes
+  url: scopes/liesheng-scopes.yml
+- type: Webhooks
+  url: asyncapi/liesheng-suunto-webhooks.yml
+- type: Conventions
+  url: conventions/liesheng-conventions.yml
+- type: Sandbox
+  url: sandbox/liesheng-sandbox.yml
+- type: Lifecycle
+  url: lifecycle/liesheng-lifecycle.yml
+- type: Conformance
+  url: conformance/liesheng-conformance.yml
+- type: WellKnown
+  url: well-known/liesheng-well-known.yml
+- type: SecurityTxt
+  url: well-known/liesheng-suunto-security.txt
+- type: Packages
+  url: packages/liesheng-packages.yml
+- type: LLMsTxt
+  url: llms/liesheng-llms.txt
+- type: LLMsTxt
+  url: llms/liesheng-haylou-llms.txt
+- type: MCPServer
+  url: mcp/liesheng-mcp.yml
+- type: DomainSecurity
+  url: security/liesheng-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
