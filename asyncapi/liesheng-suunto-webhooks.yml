@@ -1,0 +1,39 @@
+generated: '2026-07-19'
+method: searched
+source: https://apizone.suunto.com/faq
+spec_type: Webhooks
+notes: >-
+  Suunto documents a webhook notification surface for the Suunto Cloud API but
+  publishes no AsyncAPI document. This artifact captures the webhook catalog as
+  documented in the API Zone FAQ. No AsyncAPI spec was found on the docs host,
+  the GitHub org, or at /asyncapi.yaml — none has been fabricated.
+webhooks:
+  registration:
+    where: App OAuth settings under the partner profile in the Suunto API Zone
+    url: https://apizone.suunto.com/profile
+    requirement: >-
+      The callback address must be publicly accessible over the internet; local
+      or private addresses are not supported.
+  transport: HTTP POST
+  purpose: >-
+    Notify a partner application the moment a new workout or daily activity is
+    synced to Suunto Cloud, so the partner fetches on demand instead of polling.
+  events:
+  - name: new-workout
+    description: >-
+      Emitted when a new workout is synced to Suunto Cloud for an authorized user.
+    method: POST
+    payload_parameters:
+    - name: username
+      description: >-
+        The Suunto App account username. Matches the custom `user` claim inside
+        the partner's stored JWT, and is how the partner locates the right access
+        token for the notified user.
+    - name: workoutid
+      description: >-
+        Identifier of the new workout, used to fetch the corresponding FIT file
+        from the Suunto Cloud API.
+    follow_up: >-
+      Fetch the workout from https://cloudapi.suunto.com using the stored JWT plus
+      the Ocp-Apim-Subscription-Key subscription key.
+    source: https://apizone.suunto.com/faq

@@ -1,0 +1,30 @@
+generated: '2026-07-19'
+method: searched
+source: https://apizone.suunto.com/faq
+notes: >-
+  No first-party client library was found for the Suunto Cloud API or for any
+  other Liesheng brand. The API Zone FAQ states plainly: "The authorisation
+  process is optimized for mobile use. There is no mobile SDK at the moment."
+  No official package was located on npm, PyPI, Maven Central, NuGet, pkg.go.dev,
+  RubyGems, Packagist or crates.io, and Liesheng publishes no GitHub
+  organization. No SDKs pointer is emitted, because none exists to point at.
+packages: []
+searched_registries:
+- npm
+- pypi
+- maven-central
+- nuget
+- pkg.go.dev
+- rubygems
+- packagist
+- crates.io
+related_non_sdk_artifacts:
+- name: FIT examples
+  url: https://aspartnercontent.blob.core.windows.net/apizone/docs/FITexamples.zip
+  description: Sample FIT files published by Suunto for partner integration testing.
+- name: Device product IDs
+  url: https://aspartnercontent.blob.core.windows.net/apizone/docs/DeviceProductIDs.pdf
+  description: Reference of Suunto device product identifiers and capabilities.
+- name: Activities reference
+  url: https://aspartnercontent.blob.core.windows.net/apizone/docs/Activities.pdf
+  description: Reference of activity types recorded by Suunto devices.

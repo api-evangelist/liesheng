@@ -1,0 +1,30 @@
+generated: '2026-07-19'
+method: searched
+source: https://apizone.suunto.com/how-to-start
+docs: https://apizone.suunto.com/how-to-start
+notes: >-
+  Suunto does not publish a standalone scope reference page. The single scope
+  below is the one returned verbatim in the documented token response on the
+  quick-start page. Additional scopes may exist behind the partner-gated API
+  Zone; only the published value is recorded here.
+schemes:
+- name: SuuntoOAuth2
+  source: https://apizone.suunto.com/how-to-start
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://cloudapi-oauth.suunto.com/oauth/authorize
+    tokenUrl: https://cloudapi-oauth.suunto.com/oauth/token
+scopes:
+- scope: workout
+  description: >-
+    Access to the authorizing Suunto App user's workout data — FIT files with
+    summary, sample and GPS-track content — and the ability to push workouts and
+    routes back to the account.
+  flows:
+  - authorizationCode
+  sources:
+  - https://apizone.suunto.com/how-to-start
+  evidence: >-
+    Documented token response: {"access_token": "<JWT_TOKEN>", "token_type":
+    "bearer", "refresh_token": "<JWT_REFRESH_TOKEN>", "expires_in": 86400,
+    "scope": "workout"}

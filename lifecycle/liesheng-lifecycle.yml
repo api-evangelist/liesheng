@@ -1,0 +1,61 @@
+generated: '2026-07-19'
+method: searched
+source: https://apizone.suunto.com/faq
+api: Suunto Cloud API
+versioning:
+  scheme: uri-path
+  current: v2
+  evidence: https://cloudapi.suunto.com/v2/workouts
+  docs: https://apizone.suunto.com/how-to-start
+  policy_published: false
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  notes: >-
+    Suunto publishes no formal deprecation policy and no evidence of RFC 8594
+    Sunset/Deprecation header support was found. The one legacy-system statement
+    on record concerns Movescount, a separate predecessor platform: "The
+    Movescount API will remain in place so the compatibility can work still in
+    future, however we encourage people to change into Suunto App and therefore
+    the Suunto Cloud API will be the way for Suunto compatibility." That is a
+    migration recommendation, not a dated deprecation policy, so no Deprecation
+    pointer is emitted.
+  predecessor:
+    name: Movescount API
+    relationship: >-
+      Separate system with nothing in common with the Suunto Cloud API; partners
+      are directed to implement against the Suunto Cloud API instead.
+sla:
+  url: null
+  uptime_target: null
+  published: false
+status_page:
+  url: null
+  found: false
+  notes: >-
+    No status page was located for cloudapi.suunto.com or apizone.suunto.com, so
+    no StatusPage pointer is emitted.
+change_communication:
+  mechanism: >-
+    Partner newsletter. Registering for the Suunto partner program subscribes the
+    partner to notifications sent when new API capabilities become available;
+    Suunto also states it publishes the latest additions in the API Zone.
+  dated_changelog_published: false
+  notes: >-
+    No dated changelog page was found, so no changelog/ artifact was created.
+roadmap:
+  published: false
+  known_gaps_stated_by_provider:
+  - capability: sleep data
+    status: not yet supported by the Suunto Cloud API
+  - capability: points of interest
+    status: not yet supported by the Suunto Cloud API
+  - capability: >-
+      personal data such as weight and heart-rate zones
+    status: not yet available from the Suunto Cloud API
+  - capability: mobile SDK
+    status: none at the moment
+  notes: >-
+    These are provider statements of current gaps in the FAQ, not a published
+    roadmap with commitments or dates, so no Roadmap pointer is emitted.
+deprecated_operations: []

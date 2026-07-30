@@ -1,0 +1,65 @@
+generated: '2026-07-19'
+method: searched
+source: https://apizone.suunto.com/how-to-start
+api: Suunto Cloud API
+base_url: https://cloudapi.suunto.com
+authentication:
+  style: dual-credential
+  description: >-
+    Every Suunto Cloud API request carries two headers: an OAuth2 bearer JWT
+    identifying the authorizing end user, and an Azure API Management subscription
+    key identifying the partner application.
+  headers:
+  - name: Authorization
+    value: Bearer <jwt token>
+  - name: Ocp-Apim-Subscription-Key
+    value: <subscription key>
+  exception: >-
+    OAuth endpoints on https://cloudapi-oauth.suunto.com do not require the
+    Ocp-Apim-Subscription-Key header.
+  detail: authentication/liesheng-authentication.yml
+versioning:
+  scheme: uri-path
+  current: v2
+  example: https://cloudapi.suunto.com/v2/workouts
+  detail: lifecycle/liesheng-lifecycle.yml
+media_types:
+  workouts: >-
+    FIT (Flexible and Interoperable Data Transfer) files, the sports-industry
+    standard, for both fetch and push.
+  routes: GPX files with route location data enriched with waypoints (push).
+  api_responses: application/json
+idempotency:
+  supported: unknown
+  notes: >-
+    Suunto publishes no idempotency-key contract for the Cloud API and no
+    idempotency parameter appears in the public documentation. No Idempotency
+    pointer is emitted for this provider.
+pagination:
+  documented: false
+  notes: Not described in the public API Zone documentation.
+rate_limiting:
+  documented: false
+  notes: >-
+    The API Zone advertises Azure APIM products (starter, unlimited) whose quota
+    terms are visible only after partner approval; no public rate-limit figures
+    were found.
+error_envelope:
+  documented: false
+  notes: >-
+    No public error reference or problem-details schema was found; no errors/
+    artifact has been derived rather than inventing one.
+events:
+  webhooks: true
+  detail: asyncapi/liesheng-suunto-webhooks.yml
+  guidance: >-
+    Suunto explicitly directs partners to use webhooks rather than polling, and
+    to correlate the notification `username` to the `user` claim in the stored
+    JWT before fetching the workout by `workoutid`.
+access_model:
+  gated: true
+  notes: >-
+    One application per account, and one account per email address; partners
+    running multiple apps or separate test and production environments must
+    register a separate account and email for each.
+  source: https://apizone.suunto.com/faq

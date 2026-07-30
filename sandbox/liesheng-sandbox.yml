@@ -1,0 +1,45 @@
+generated: '2026-07-19'
+method: searched
+source: https://apizone.suunto.com/how-to-start
+notes: >-
+  Suunto operates no separate sandbox environment and publishes no magic test
+  identifiers. Testing is done against production with a real Suunto App account
+  the partner creates, plus the interactive try-it console built into the Azure
+  API Management developer portal. Nothing below is invented — no test tokens,
+  keys or fixture values are published by Suunto.
+separate_sandbox_environment: false
+test_mode:
+  approach: real-account-against-production
+  steps:
+  - Download and install the Suunto App from Google Play or the App Store.
+  - Create an account with it.
+  - >-
+      Synchronize data from a Suunto watch, or track a workout with the app
+      itself, to generate data to test against.
+  app_ios: https://apps.apple.com/fi/app/suunto/id1230327951
+  app_android: https://play.google.com/store/apps/details?id=com.stt.android.suunto
+console:
+  available: true
+  url: https://apizone.suunto.com/apis
+  description: >-
+    Each API page in the Suunto API Zone carries documentation for its calls and
+    an interactive facility to try the API.
+  gated: true
+  access_requirement: >-
+    Acceptance into the Suunto partner program; the console cannot be exercised
+    anonymously.
+  limitation: >-
+    Suunto recommends performing the OAuth authorization step in a browser rather
+    than the portal console, because the console does not support the interactive
+    user-consent step.
+environment_separation:
+  supported: true
+  mechanism: >-
+    Separate accounts, not separate environments. One account maps to one
+    application and one email address, so a partner running distinct test and
+    production apps must register a separate account and email address for each.
+  source: https://apizone.suunto.com/faq
+test_fixtures:
+- name: FIT examples
+  url: https://aspartnercontent.blob.core.windows.net/apizone/docs/FITexamples.zip
+  description: Sample FIT files partners can parse while building an integration.

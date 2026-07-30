@@ -1,0 +1,86 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of every Liesheng-estate host on 2026-07-19
+notes: >-
+  Probed the corporate host, both brand hosts, the Suunto API gateway and the
+  Suunto developer portal. The HAYLOU storefront runs on Shopify, so its OIDC and
+  UCP documents are platform-provisioned but genuinely served from the haylou.com
+  origin; they are recorded as found.
+hosts:
+- host: https://cloudapi.suunto.com
+  role: Suunto Cloud API gateway
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+- host: https://apizone.suunto.com
+  role: Suunto API Zone developer portal (Azure API Management)
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+- host: https://www.suunto.com
+  role: SUUNTO brand site
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: liesheng-suunto-security.txt
+    note: >-
+      RFC 9116 document, but Contact and Policy both point at the privacy policy
+      rather than a vulnerability-disclosure channel.
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+- host: https://haylou.com
+  role: HAYLOU brand storefront (Shopify)
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: liesheng-haylou-openid-configuration.json
+    note: >-
+      Shopify Customer Accounts OIDC discovery; issuer
+      https://shopify.com/authentication/68583227676. Scopes include
+      customer-account-mcp-api:full.
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: liesheng-haylou-oauth-authorization-server.json
+    note: RFC 8414 metadata, identical payload to the OIDC document.
+  - path: /.well-known/ucp
+    status: 200
+    file: liesheng-haylou-ucp.json
+    note: >-
+      Universal Commerce Protocol merchant profile advertising the live MCP
+      endpoint at https://haylou.com/api/ucp/mcp — see mcp/liesheng-mcp.yml.
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+- host: https://liesheng.cc
+  role: Liesheng Group corporate site
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 000
+    note: connection failed
+  warning: >-
+    TLS on liesheng.cc presents a certificate issued for www.haylou.cn that
+    expired 2025-12-09 — hostname mismatch and expiry both fail verification.
+    See security/liesheng-domain-security.yml.

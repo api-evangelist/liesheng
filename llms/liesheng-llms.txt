@@ -1,0 +1,60 @@
+# Liesheng Group
+
+> Liesheng Group (猎声集团) is a Dongguan, Guangdong consumer-electronics company founded 25 May 2015 as one of Xiaomi's first ecosystem-chain suppliers. It is a global ODM/OEM solution provider reaching 100+ countries, and owns the HAYLOU brand (wireless audio, smart wearables, bone-conduction headphones, microphones; launched 2017) and SUUNTO, the Finnish premium sports-watch brand it acquired in 2022. Liesheng publishes no corporate API. Its developer surface is the partner-gated Suunto Cloud API, plus a Shopify-provisioned agentic-commerce MCP endpoint on the HAYLOU storefront.
+
+## APIs
+
+- [Suunto Cloud API](https://apizone.suunto.com/apis): OAuth2 workout and daily-activity data for approved Suunto partners. Base URL https://cloudapi.suunto.com, current version v2. Fetch workouts as FIT files (summary, heart rate, R-R, power, altitude, temperature, GPS tracks) and daily steps/calories; push workouts as FIT and routes as GPX. Free of charge, gated behind the Suunto partner program, not available for personal use.
+- [HAYLOU UCP MCP endpoint](https://haylou.com/api/ucp/mcp): live Universal Commerce Protocol MCP server for agent-driven shopping on the HAYLOU storefront — catalog search, cart, checkout, fulfillment, discount and order capabilities. Buyer approval is required before any payment completes.
+
+## Getting started
+
+- [How to start with the Suunto Cloud API](https://apizone.suunto.com/how-to-start): subscribe to the Developer API for a subscription key, configure the OAuth app, create a Suunto App test account, obtain a JWT, then call the API.
+- [Suunto API Zone FAQ](https://apizone.suunto.com/faq): access, contents, authorization flow and webhooks.
+- [Suunto partner program application](https://www.suunto.com/welcomepartners): the only route to API access; response within two weeks of acceptance.
+- [Suunto API Zone sign-in](https://apizone.suunto.com/signin)
+- Partner contact: partners@suunto.com
+
+## Authentication
+
+- OAuth2 authorization code flow. Authorize at https://cloudapi-oauth.suunto.com/oauth/authorize, exchange at https://cloudapi-oauth.suunto.com/oauth/token using HTTP Basic client credentials. Access tokens are JWTs valid 86400 seconds, scope `workout`, with refresh tokens.
+- Every Suunto Cloud API call needs BOTH `Authorization: Bearer <jwt token>` and `Ocp-Apim-Subscription-Key: <subscription key>`. OAuth endpoints do not need the subscription key.
+- The JWT carries a custom `user` claim holding the Suunto App username — use it to match webhook notifications to the right stored token.
+
+## Events
+
+- Webhooks notify partners when a new workout syncs. Register the callback in the app OAuth settings in the API Zone profile; Suunto POSTs `username` and `workoutid`. Suunto directs partners to use webhooks rather than polling. No AsyncAPI document is published.
+
+## Repository artifacts
+
+- [Authentication profile](authentication/liesheng-authentication.yml)
+- [OAuth scopes](scopes/liesheng-scopes.yml)
+- [API conventions](conventions/liesheng-conventions.yml)
+- [Webhook catalog](asyncapi/liesheng-suunto-webhooks.yml)
+- [MCP server](mcp/liesheng-mcp.yml)
+- [Sandbox and testing](sandbox/liesheng-sandbox.yml)
+- [Lifecycle and versioning](lifecycle/liesheng-lifecycle.yml)
+- [Standards conformance](conformance/liesheng-conformance.yml)
+- [Well-known documents](well-known/liesheng-well-known.yml)
+- [Packages](packages/liesheng-packages.yml)
+- [Domain security](security/liesheng-domain-security.yml)
+- [HAYLOU agent instructions, verbatim](llms/liesheng-haylou-llms.txt)
+
+## Company
+
+- [Liesheng Group](https://liesheng.cc)
+- [About Liesheng](https://liesheng.cc/about.html)
+- [Products](https://liesheng.cc/product.html)
+- [Support](https://liesheng.cc/support.html)
+- [Terms of service](https://liesheng.cc/terms.html)
+- [Privacy policy](https://liesheng.cc/privacy.html)
+- [SUUNTO](https://www.suunto.com)
+- [HAYLOU](https://haylou.com)
+
+## Notes for agents
+
+- There is no public, self-service API. Suunto Cloud API access requires partner-program acceptance and a signed API agreement; personal use is explicitly not offered.
+- There is no first-party SDK in any language and no mobile SDK.
+- No OpenAPI, AsyncAPI or Protobuf definition is published, so no specification, error catalog, data model or agent skill has been derived for the Suunto Cloud API.
+- Sleep data, points of interest, and personal data such as weight and heart-rate zones are not exposed by the Suunto Cloud API.
+- The liesheng.cc corporate host serves an expired certificate issued for www.haylou.cn; verify TLS carefully.
