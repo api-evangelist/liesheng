@@ -2,14 +2,11 @@ generated: '2026-07-19'
 method: searched
 status: published
 source: https://haylou.com/llms.txt
-notes: >-
-  Liesheng's HAYLOU brand storefront exposes a live, publicly documented MCP
-  endpoint implementing the Universal Commerce Protocol (UCP). The surface is
-  provisioned by Shopify — the store runs on Shopify and Shopify serves UCP
-  natively — rather than being hand-built by Liesheng, but it is genuinely
-  reachable on the haylou.com origin and is the only MCP server in the Liesheng
-  estate. The Suunto Cloud API has no MCP server and no OpenAPI to derive a
-  candidate tool list from, so none has been invented for it.
+notes: Liesheng's HAYLOU brand storefront exposes a live, publicly documented MCP endpoint implementing
+  the Universal Commerce Protocol (UCP). The surface is provisioned by Shopify — the store runs on Shopify
+  and Shopify serves UCP natively — rather than being hand-built by Liesheng, but it is genuinely reachable
+  on the haylou.com origin and is the only MCP server in the Liesheng estate. The Suunto Cloud API has
+  no MCP server and no OpenAPI to derive a candidate tool list from, so none has been invented for it.
 server:
   name: haylou-ucp
   brand: HAYLOU
@@ -29,15 +26,12 @@ server:
   - '2026-01-23'
 verification:
   probed: '2026-07-19'
-  request: 'JSON-RPC tools/list POST'
+  request: JSON-RPC tools/list POST
   http_status: 422
-  response: >-
-    {"jsonrpc":"2.0","id":1,"error":{"code":-32001,"message":"UCP discovery
-    failed","data":{"code":"invalid_profile_url",...}}}
-  interpretation: >-
-    The endpoint is live and speaks JSON-RPC; enumerating tools requires a
-    registered UCP agent profile URI, so the tool list below is taken from the
-    published documentation rather than from a live tools/list response.
+  response: '{"jsonrpc":"2.0","id":1,"error":{"code":-32001,"message":"UCP discovery failed","data":{"code":"invalid_profile_url",...}}}'
+  interpretation: The endpoint is live and speaks JSON-RPC; enumerating tools requires a registered UCP
+    agent profile URI, so the tool list below is taken from the published documentation rather than from
+    a live tools/list response.
 tools:
 - name: search_catalog
   description: Find products matching the buyer's intent.
@@ -52,9 +46,8 @@ tools:
   description: Set the shipping address and shipping method.
   source: https://haylou.com/llms.txt
 - name: complete_checkout
-  description: >-
-    Finalize the purchase. The buyer must explicitly approve payment — agents
-    must not complete payment without contemporaneous buyer consent.
+  description: Finalize the purchase. The buyer must explicitly approve payment — agents must not complete
+    payment without contemporaneous buyer consent.
   source: https://haylou.com/llms.txt
 capabilities:
 - dev.ucp.shopping.catalog.search
@@ -67,3 +60,11 @@ constraints:
   human_approval_required: true
   rate_limited: per-IP, back off on 429
   buyer_context: pass context.address_country and context.currency
+deployment:
+  mode: remote
+  endpoint: https://haylou.com/api/ucp/mcp
+  verified: probed
+  probe: live
+  tools: 13
+  checked: '2026-08-12'
+  source: catalog MCP census
