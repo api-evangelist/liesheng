@@ -64,40 +64,112 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Liesheng Group (猎声集团 / Liesheng Technology) is a Dongguan, Guangdong consumer-electronics company founded on 25 May 2015 as one of Xiaomi's first ecosystem-chain suppliers. It operates as a global ODM/OEM solution provider — it engineered the Redmi AirDots true-wireless earbuds — while building its own brand portfolio, reaching more than 100 countries and regions.
+Liesheng Group (猎声集团 / Liesheng Technology) is a Dongguan, Guangdong based consumer-electronics company founded on 25 May 2015 as one of Xiaomi's first ecosystem-chain suppliers. It operates as a global ODM/OEM solution provider — it engineered the Redmi AirDots true-wireless earbuds — while building its own brand portfolio, and reaches customers in more than 100 countries and regions. Liesheng launched the HAYLOU brand of wireless audio, smart wearables, bone- conduction headphones and microphones in 2017, and in 2022 acquired SUUNTO, the 85-year-old Finnish premium sports-watch and outdoor-instrument brand, in the same year it raised a B round led by Cathay Capital and a B+ round led by Amer Sports. Liesheng publishes no corporate API of its own; its developer surface is the Suunto Cloud API (Integration API), a partner-gated OAuth2 workout and daily-activity data API served through the Suunto API Zone.
 
-- **HAYLOU** — wireless audio, smart wearables, bone-conduction headphones and microphones; brand launched 2017.
-- **SUUNTO** — the 85-year-old Finnish premium sports-watch and outdoor-instrument brand, acquired by Liesheng in 2022.
+**Areas:** Company · Consumer Electronics · Wearables · Audio · Sports · Fitness · Health · IoT · ODM · OEM · China
 
-## Developer surface
+## Liesheng Group on APIs.io
 
-Liesheng publishes no corporate API. Two real surfaces exist in the estate:
+Everything profiled for Liesheng Group is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/liesheng/](https://apis.io/providers/liesheng/)** — or go straight to one of the APIs or properties below.
 
-- **[Suunto Cloud API](https://apizone.suunto.com/apis)** — partner-gated OAuth2 access to a Suunto App user's workouts (FIT files with GPS tracks and sensor samples) and daily activity, plus workout and route push. Base URL `https://cloudapi.suunto.com`, version `v2`. Free of charge, but access requires acceptance into the [Suunto partner program](https://www.suunto.com/welcomepartners) and a signed API agreement; personal use is not offered. Webhooks announce new workouts. No OpenAPI, no SDK.
-- **[HAYLOU Commerce (UCP/MCP)](https://haylou.com/agents.md)** — a live Universal Commerce Protocol MCP endpoint at `https://haylou.com/api/ucp/mcp` for agent-driven shopping, provisioned by Shopify and served from the haylou.com origin.
+### APIs (2)
 
-## Artifacts
+- [Suunto Cloud API](https://apis.io/apis/liesheng/suunto-cloud-api/) — The Suunto Cloud API (also called the Integration API) gives approved partners OAuth2-authorized access to a Suunto App user's workout and daily-activity…
+- [HAYLOU Commerce (UCP/MCP)](https://apis.io/apis/liesheng/haylou-ucp/) — The HAYLOU brand storefront exposes an agent-facing commerce surface over the Universal Commerce Protocol, reachable as a live MCP endpoint. Agents can…
 
-| Artifact | File |
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Liesheng Suunto Webhooks](https://apis.io/asyncapis/liesheng/liesheng-suunto-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [haylou-ucp](https://apis.io/servers/liesheng/haylou-ucp/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Liesheng Authentication](https://apis.io/security/liesheng/liesheng-authentication/)
+- [Liesheng Domain Security](https://apis.io/security/liesheng/liesheng-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Liesheng Scopes](https://apis.io/scopes/liesheng/liesheng-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://liesheng.cc)
+- [Documentation](https://apizone.suunto.com/how-to-start)
+- [Getting started](https://apizone.suunto.com/how-to-start)
+- [API reference](https://apizone.suunto.com/apis)
+- [Sign up](https://www.suunto.com/welcomepartners)
+- [Support](https://liesheng.cc/support.html)
+- [Terms of service](https://liesheng.cc/terms.html)
+- [Privacy policy](https://liesheng.cc/privacy.html)
+
+## API Evangelist rating
+
+**Kin Score 44.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
 |---|---|
-| Authentication | `authentication/liesheng-authentication.yml` |
-| OAuth scopes | `scopes/liesheng-scopes.yml` |
-| Conventions | `conventions/liesheng-conventions.yml` |
-| Webhooks | `asyncapi/liesheng-suunto-webhooks.yml` |
-| MCP server | `mcp/liesheng-mcp.yml` |
-| Sandbox / testing | `sandbox/liesheng-sandbox.yml` |
-| Lifecycle | `lifecycle/liesheng-lifecycle.yml` |
-| Conformance | `conformance/liesheng-conformance.yml` |
-| Well-known index | `well-known/liesheng-well-known.yml` |
-| Packages | `packages/liesheng-packages.yml` |
-| llms.txt | `llms/liesheng-llms.txt` |
-| Domain security | `security/liesheng-domain-security.yml` |
+| Discoverability | 75.0 |
+| Contract quality | 39.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 61.9 |
+| Access clarity | 34.2 |
 
-## Notes
+**Agent readiness 31.1** — agent-ready
 
-- No OpenAPI, AsyncAPI or Protobuf is published, so no spec, error catalog, data model, overlay or agent skill has been derived — nothing has been fabricated to fill those slots.
-- No first-party SDK exists in any language; the API Zone FAQ states there is no mobile SDK.
-- No status page, dated changelog, published roadmap, vulnerability-disclosure program or trust center was found.
-- `https://liesheng.cc` serves an expired certificate issued for `www.haylou.cn` (expired 2025-12-09) — hostname mismatch and expiry both fail verification.
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | platform (partial credit) |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
 
-Backed by: qiming — https://liesheng.cc
+**Regulatory alignment 32.8** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/liesheng/](https://apis.io/providers/liesheng/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Liesheng Group: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/liesheng/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
